@@ -14,4 +14,3 @@ class Solution:
                 right = middle - 1
         
         return -1
-        
