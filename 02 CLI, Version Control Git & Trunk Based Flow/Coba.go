@@ -4,5 +4,5 @@ import "fmt"
 
 func main() {
 	fmt.Println("Hello world")		// master
-	fmt.Println("New dev")
+	fmt.Println("New feature B")
 }
