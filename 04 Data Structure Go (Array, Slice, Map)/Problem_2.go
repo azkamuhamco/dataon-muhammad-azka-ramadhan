@@ -3,32 +3,33 @@ package main
 import (
 	"fmt"
 	"strconv"
-	"strings"
 )
 
 func munculSekali(angka string) []int {
-	// inisiasi variabel
-	arrae := strings.SplitAfter(angka, "")
-	peta  := make(map[string]int)
-	hasil := []int{}
+	var a string
+	var c []int
 
-	// jumlah frekuensi tiap angka
-    for _, element := range arrae {
-		peta[element]++
-    }
-
-	// Filter rune hanya freq = 1; string >>> int
-	for kunci, frek := range peta {
-		if frek == 1 {
-			intStr, err := strconv.Atoi(kunci)
-			if err != nil {
-				return nil
+	for i:=0; i<len(angka); i++ {
+		flag := 0
+		for j:=0; j<len(angka); j++ {
+			if string(angka[i]) == string(angka[j]) && i!=j {
+				flag = 1
+				break
 			}
-			hasil = append(hasil, intStr)
+		}
+
+		if flag == 0 {
+			a += string(angka[i])
 		}
 	}
 
-	return hasil
+    b := []rune(a)
+	for i:=0; i<len(b); i++ {
+		bi, _ := strconv.Atoi(string(b[i]))
+		c = append(c, bi)
+	}
+
+	return c
 }
 
 func main() {
