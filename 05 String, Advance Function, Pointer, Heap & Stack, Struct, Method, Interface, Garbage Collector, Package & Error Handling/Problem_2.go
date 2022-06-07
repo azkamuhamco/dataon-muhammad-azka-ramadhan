@@ -1,13 +1,29 @@
 package main
-import "fmt"
+import (
+	"fmt"
+	"unicode"
+)
 
 func caesar(offset int, input string) string {
 	var hasil string
 
 	for i := 0; i<len(input); i++ {
-		hasil += string(int(int(input[i])+offset-97)%26 + 97)
+		if isUpper(input) {
+			hasil += string(int(int(input[i])+offset-65)%26 + 65)
+		} else {
+			hasil += string(int(int(input[i])+offset-97)%26 + 97)
+		}
 	}
 	return hasil
+}
+
+func isUpper(s string) bool {
+    for _, r := range s {
+        if !unicode.IsUpper(r) && unicode.IsLetter(r) {
+            return false
+        }
+    }
+    return true
 }
 
 func main() {
