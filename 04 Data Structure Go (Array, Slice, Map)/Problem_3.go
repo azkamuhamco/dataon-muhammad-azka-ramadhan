@@ -3,18 +3,15 @@ import "fmt"
 
 func PairSum(arr []int, target int) []int {
     var output []int
+	numsMap := make(map[int]int)
 	
 	// convert slice to map
-	numsMap := make(map[int]int)
 	for key, value := range arr {
 		numsMap[value] = key
-	}
-    
-	// find in map
-	for key, value := range arr {
-		result := target - value
+		result := target - value // find in map
+
 		if nextKey, exist := numsMap[result]; exist && nextKey != key {
-			output = append(output, key, nextKey)
+			output = append(output, nextKey, key)
 			break
 		}
 	}
