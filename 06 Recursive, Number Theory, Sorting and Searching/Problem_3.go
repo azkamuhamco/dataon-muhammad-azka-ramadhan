@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
-	// "strconv"
+	"strconv"
 )
 
 func isPrime(number int) bool {
@@ -38,7 +38,7 @@ func primaSegiEmpat(high, wide, start int) {
 	// strconv.Itoa(arr[j]) 
 	for i:=0; i<wide; i++ {
 		for j:=0; j<high; j++ {
-			fmt.Printf("*" + " ")
+			fmt.Printf(strconv.Itoa(i+j) + " ")
 		}
 		fmt.Println()
 	}
