@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	// "strconv"
 )
 
 func isPrime(number int) bool {
@@ -34,7 +35,14 @@ func primaSegiEmpat(high, wide, start int) {
 	   sum += arr[i]
 	}
 
-	fmt.Println(arr)
+	// strconv.Itoa(arr[j]) 
+	for i:=0; i<wide; i++ {
+		for j:=0; j<high; j++ {
+			fmt.Printf("*" + " ")
+		}
+		fmt.Println()
+	}
+
 	fmt.Println(sum)
 }
 
