@@ -1,7 +1,41 @@
 package main
 
-func primaSegiEmpat(high, wide, start int) {
+import (
+	"fmt"
+	"math"
+)
 
+func isPrime(number int) bool {
+	numSqrt := math.Sqrt(float64(number))
+	for i:=2; i<=int(numSqrt); i++ {
+		if (number % i) == 0 {
+			return false
+		}
+	}
+	return true
+}
+
+func primaSegiEmpat(high, wide, start int) {
+	nArray := high * wide
+	var arr []int
+
+	for {
+		if isPrime(start) {
+			arr = append(arr, start)
+		}
+		start++
+		if len(arr) >= nArray {
+			break
+		}
+	}
+
+	sum := 0
+	for i:=0; i<len(arr); i++ {
+	   sum += arr[i]
+	}
+
+	fmt.Println(arr)
+	fmt.Println(sum)
 }
 
 func main() {
