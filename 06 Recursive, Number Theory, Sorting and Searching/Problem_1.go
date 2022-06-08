@@ -7,7 +7,7 @@ import (
 
 func isPrime(number int) bool {
 	numSqrt := math.Sqrt(float64(number))
-	for i := 2; i<=int(numSqrt); i++ {
+	for i:=2; i<=int(numSqrt); i++ {
 		if (number % i) == 0 {
 			return false
 		}
