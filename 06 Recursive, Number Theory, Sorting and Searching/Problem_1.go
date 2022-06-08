@@ -17,11 +17,15 @@ func isPrime(number int) bool {
 
 func primeX(number int) int {
 	var arr []int
-	N := 29
-
-	for i:=2; i<=N; i++ {
+	i:=2;
+	
+	for {
 		if isPrime(i) {
 			arr = append(arr, i)
+		}
+		i++
+		if len(arr) >= number {
+			break
 		}
 	}
 	return arr[number-1]
