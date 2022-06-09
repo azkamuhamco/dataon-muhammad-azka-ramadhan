@@ -1,21 +1,24 @@
 package main
-
-import (
-	"fmt"
-	"math"
-)
+import "fmt"
 
 func MaxSequence(arr []int) int {
-    var kiri float64  = float64(arr[0])
-    var kanan float64 = float64(arr[0])
-    var n int         = len(arr)
+    var kiri  = arr[0]
+    var kanan = arr[0]
+    var n int = len(arr)
 
     for i:=1; i<n; i++ {
-        kanan = math.Max(float64(arr[i]), float64(kanan) + float64(arr[i]))
-        kiri = math.Max(float64(kiri), float64(kanan))
+        kanan = maxInt(arr[i], kanan + arr[i])
+        kiri = maxInt(kiri, kanan)
     }
     
     return int(kiri)
+}
+
+func maxInt(a, b int) int {
+    if a < b {
+        return b
+    }
+    return a
 }
 
 func main() {

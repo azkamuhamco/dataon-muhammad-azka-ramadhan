@@ -1,8 +1,8 @@
 package main
+
 import (
 	"fmt"
 	"unsafe"
-	"math"
 )
 
 func Frog(jumps []int) int {
@@ -22,14 +22,21 @@ func Frog(jumps []int) int {
 
     // Iterate over the range[2, N - 2] to construct the dp array
     for i := 2; i < n - 1; i++ {
-        dp[i] = int(math.Min(float64(dp[i-2] + jumps[i]), float64(dp[i-1] + jumps[i] + jumps[i+1])));
+        dp[i] = minInt((dp[i-2] + jumps[i]), (dp[i-1] + jumps[i] + jumps[i+1]));
 	}
 
 	// Handle case for the last index, i.e. N - 1
-    dp[n-1] = int(math.Min(float64(dp[n- 2]), float64(dp[n-3] + jumps[n-1]))) - jumps[len(jumps)-1];
+    dp[n-1] = minInt((dp[n- 2]), (dp[n-3] + jumps[n-1])) - jumps[len(jumps)-1];
  
     // Print the answer
     return dp[n-1];
+}
+
+func minInt(a, b int) int {
+    if a < b {
+        return a
+    }
+    return b
 }
 
 func main() {

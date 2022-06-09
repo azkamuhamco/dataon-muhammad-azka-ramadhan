@@ -35,10 +35,10 @@ func primaSegiEmpat(high, wide, start int) {
 	   sum += arr[i]
 	}
 
-	// strconv.Itoa(arr[j]) 
-	for i:=0; i<wide; i++ {
-		for j:=0; j<high; j++ {
-			fmt.Printf(strconv.Itoa(i+j) + " ")
+	for j:=0; j<wide; j++ {
+		for i:=0; i<high; i++ {
+			a := (high * j) + i
+			fmt.Printf(strconv.Itoa(arr[a]) + " ")
 		}
 		fmt.Println()
 	}
