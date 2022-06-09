@@ -18,6 +18,7 @@ func isPrime(number int) bool {
 
 func primaSegiEmpat(high, wide, start int) {
 	nArray := high * wide
+	sum := 0
 	var arr []int
 
 	for {
@@ -30,7 +31,6 @@ func primaSegiEmpat(high, wide, start int) {
 		}
 	}
 
-	sum := 0
 	for i:=0; i<len(arr); i++ {
 	   sum += arr[i]
 	}
