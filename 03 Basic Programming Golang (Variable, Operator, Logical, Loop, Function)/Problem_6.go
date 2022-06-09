@@ -3,12 +3,16 @@ package main
 import "fmt"
 
 func pangkat(x, y int) int {
-    if y == 0 {
-		return 1
-	} else if x == 0 {
-		return 0
+	result := 1
+	for y > 0 {
+		if y%2 == 0 {
+			x = x*x
+			y = y>>1
+		}
+		result *= x
+		y -= 1
 	}
-    return x * pangkat(x, y - 1)
+	return result
 }
 
 func main() {
