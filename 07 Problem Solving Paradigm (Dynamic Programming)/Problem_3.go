@@ -26,7 +26,7 @@ func Frog(jumps []int) int {
 	}
 
 	// Handle case for the last index, i.e. N - 1
-    dp[n-1] = minInt((dp[n- 2]), (dp[n-3] + jumps[n-1])) - jumps[len(jumps)-1];
+    dp[n-1] = minInt((dp[n-2]), (dp[n-3] + jumps[n-1])) - jumps[len(jumps)-1];
  
     // Print the answer
     return dp[n-1];
