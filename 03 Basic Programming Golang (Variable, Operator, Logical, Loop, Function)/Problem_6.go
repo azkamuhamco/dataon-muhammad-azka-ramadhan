@@ -2,11 +2,13 @@ package main
 
 import "fmt"
 
-func pangkat(base, pangka int) int {
-	if pangka > 1 {
-		return base * pangkat(base, pangka - 1)
+func pangkat(x, y int) int {
+    if y == 0 {
+		return 1
+	} else if x == 0 {
+		return 0
 	}
-	return base
+    return x * pangkat(x, y - 1)
 }
 
 func main() {
