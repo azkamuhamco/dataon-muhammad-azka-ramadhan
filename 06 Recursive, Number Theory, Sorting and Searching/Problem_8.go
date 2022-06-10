@@ -1,30 +1,43 @@
 // BELUM TUNTAS
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 type pair struct {
 	name string
 	count int
 }
 
-func MostAppearItem(items []string) map[string]int { //[]pair {
-	// var tagsList []pair
-	
-    freq := make(map[string]int)
-    for _, num :=  range items {
-        freq[num]++
+func MostAppearItem(items []string) []pair {
+	// Langkah 1: Buat mapping nama dan jumlah frekuensi
+    basket := make(map[string]int)
+    for _, freq :=  range items {
+        basket[freq]++
     }
 
-    // sort.SliceStable(keys, func(i, j int) bool{
-    //     return basket[keys[i]] < basket[keys[j]]
-    // })
+	// Langkah 2: Pisahkan menjadi array masing2
+	keys   := make([]string, 0, len(basket))
+	values := make([]int, 0, len(basket))
+	for key, value := range basket {
+		keys = append(keys, key)
+		values = append(values, value)
+	}
 
-	// for i:=0; i<len(items); i++ {
-	// 	tagsList = append(tagsList, pair { items[i] +"->", i}, )
-	// }
+	// Langkah 2: Urutkan dari frekuensi dari terkecil ke terbesar
+	sort.SliceStable(keys, func(i, j int) bool {
+		return basket[keys[i]] < basket[keys[j]]
+	})
+	sort.Ints(values[:])
 
-	return freq
+	// Pengembalian nilai untuk ditampilkan
+	var tagsList []pair
+	for i:=0; i<len(keys); i++ {
+		tagsList = append(tagsList, pair { keys[i], values[i] }, )
+	}
+	return tagsList
 }
 
 func main() {
