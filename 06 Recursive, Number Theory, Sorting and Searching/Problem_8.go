@@ -1,4 +1,3 @@
-// BELUM TUNTAS
 package main
 
 import (
