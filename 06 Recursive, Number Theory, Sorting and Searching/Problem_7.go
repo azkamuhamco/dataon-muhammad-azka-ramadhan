@@ -1,20 +1,41 @@
-// MASIH SALAH
 package main
 import "fmt"
 
 func playingDomino(cards [][]int, deck []int) interface{} {
-	var hasil [][]int
-
+	// Tahap 1: Temukan kartu yang salah satu angkanya sama dengan deck
+	var arr [][]int
     for i:=0; i<len(cards); i++ {
 		if deck[0] == cards[i][0] || deck[1] == cards[i][0] || deck[0] == cards[i][1] || deck[1] == cards[i][1] {
-			hasil = append(hasil, cards[i])
+			arr = append(arr, cards[i])
 		}
 	}
 
-	if len(hasil) == 0 {
+	// Jika tidak ditemukan maka...
+	if len(arr) == 0 {
 		return "tutup kartu"
 	}
-	return hasil
+
+	// Tahap 2: Cari kartu yang paling besar hasil penjumlahannya
+	var eMax []int
+	n := len(arr)
+
+	if n == 1 {
+		eMax = arr[0]
+	}
+
+	if arr[0][0] + arr[0][1] > arr[1][0] + arr[1][1] {
+		eMax = arr[0]
+	} else {
+		eMax = arr[1]
+	}
+
+	for i:=2; i<n; i++ {
+		if arr[0][0] + arr[0][1] > eMax[0] + eMax[1] { 
+			eMax = arr[i]
+		}
+	}
+
+	return eMax
 }
 
 func main() {
