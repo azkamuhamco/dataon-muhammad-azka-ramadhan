@@ -8,14 +8,23 @@ type pair struct {
 	count int
 }
 
-func MostAppearItem(items []string) []pair {
-	var tagsList []pair
+func MostAppearItem(items []string) map[string]int { //[]pair {
+	// var tagsList []pair
 	
-	for i:=0; i<len(items); i++ {
-		tagsList = append(tagsList, pair { items[i] +"->", i}, )
-	}
+    freq := make(map[string]int)
+    for _, num :=  range items {
+        freq[num]++
+    }
 
-	return tagsList
+    // sort.SliceStable(keys, func(i, j int) bool{
+    //     return basket[keys[i]] < basket[keys[j]]
+    // })
+
+	// for i:=0; i<len(items); i++ {
+	// 	tagsList = append(tagsList, pair { items[i] +"->", i}, )
+	// }
+
+	return freq
 }
 
 func main() {
