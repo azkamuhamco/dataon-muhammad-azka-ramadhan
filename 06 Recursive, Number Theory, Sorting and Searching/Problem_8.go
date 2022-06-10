@@ -25,13 +25,13 @@ func MostAppearItem(items []string) []pair {
 		values = append(values, value)
 	}
 
-	// Langkah 2: Urutkan dari frekuensi dari terkecil ke terbesar
+	// Langkah 3: Urutkan dari frekuensi dari terkecil ke terbesar
 	sort.SliceStable(keys, func(i, j int) bool {
 		return basket[keys[i]] < basket[keys[j]]
 	})
 	sort.Ints(values[:])
 
-	// Pengembalian nilai untuk ditampilkan
+	// Langkah 4: Pengembalian nilai untuk ditampilkan
 	var tagsList []pair
 	for i:=0; i<len(keys); i++ {
 		tagsList = append(tagsList, pair { keys[i], values[i] }, )
