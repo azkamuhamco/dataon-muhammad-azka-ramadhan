@@ -5,8 +5,10 @@ func playingDomino(cards [][]int, deck []int) interface{} {
 	// Tahap 1: Temukan kartu yang salah satu angkanya sama dengan deck
 	var arr [][]int
     for i:=0; i<len(cards); i++ {
-		if deck[0] == cards[i][0] || deck[1] == cards[i][0] || deck[0] == cards[i][1] || deck[1] == cards[i][1] {
-			arr = append(arr, cards[i])
+		for j:=0; j<2; j++ {
+			if deck[0] == cards[i][j] || deck[1] == cards[i][j] {
+				arr = append(arr, cards[i])
+			}
 		}
 	}
 
