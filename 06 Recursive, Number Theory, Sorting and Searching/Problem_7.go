@@ -6,10 +6,8 @@ func playingDomino(cards [][]int, deck []int) interface{} {
 	var hasil []int
 
     for i:=0; i<len(cards); i++ {
-		for j:=0; j<2; j++ {
-			if deck[0] == cards[i][j] || deck[1] == cards[i][j]{
-				hasil = append(hasil, cards[i]...)
-			}
+		if deck[0] == cards[i][0] || deck[1] == cards[i][0] || deck[0] == cards[i][1] || deck[1] == cards[i][1] {
+			hasil = append(hasil, cards[i]...)
 		}
 	}
 
