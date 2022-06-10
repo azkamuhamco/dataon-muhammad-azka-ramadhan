@@ -6,7 +6,7 @@ import (
 )
 
 func DragonOfLoowater(dragonHead, knightHeight []int) {
-	solve := func(dragons, knights []int) int {
+	solve := func(dragons, knights []int) interface{} {
 		sort.Ints(knights)
 		sort.Ints(dragons)
 		var total int
@@ -16,17 +16,12 @@ func DragonOfLoowater(dragonHead, knightHeight []int) {
 				total += knights[pos]
 				knights = knights[pos+1:]
 			} else {
-				return -1
+				return "knight fall"
 			}
 		}
 		return total
 	}
-
-	if solve(dragonHead, knightHeight) == -1 {
-		fmt.Println("knight fall")
-	} else {
-		fmt.Println(solve(dragonHead, knightHeight))
-	}
+	fmt.Println(solve(dragonHead, knightHeight))
 }
 
 func main() {
