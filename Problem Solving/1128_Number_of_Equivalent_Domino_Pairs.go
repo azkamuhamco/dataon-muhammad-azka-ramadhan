@@ -3,7 +3,7 @@ func numEquivDominoPairs(dominoes [][]int) int {
 
 	// sort each domino
 	for i := 0; i < len(dominoes); i++ { 
-		if dominoes[i][0] > dominoes[i][1] {
+		if dominoes[i][0] > dominoes[i][1] { 
 			dominoes[i][0], dominoes[i][1] = dominoes[i][1], dominoes[i][0]
 		}
 	}

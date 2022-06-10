@@ -6,27 +6,27 @@ import (
 )
 
 func DragonOfLoowater(dragonHead, knightHeight []int) {
+	solve := func(dragons, knights []int) int {
+		sort.Ints(knights)
+		sort.Ints(dragons)
+		var total int
+		for _, dragon := range dragons {
+			l := len(knights)
+			if pos := sort.Search(l, func(i int) bool { return knights[i] >= dragon }); pos < l {
+				total += knights[pos]
+				knights = knights[pos+1:]
+			} else {
+				return -1
+			}
+		}
+		return total
+	}
+
 	if solve(dragonHead, knightHeight) == -1 {
 		fmt.Println("knight fall")
 	} else {
 		fmt.Println(solve(dragonHead, knightHeight))
 	}
-}
-
-func solve(dragons, knights []int) int {
-	sort.Ints(knights)
-	sort.Ints(dragons)
-	var total int
-	for _, dragon := range dragons {
-		l := len(knights)
-		if pos := sort.Search(l, func(i int) bool { return knights[i] >= dragon }); pos < l {
-			total += knights[pos]
-			knights = knights[pos+1:]
-		} else {
-			return -1
-		}
-	}
-	return total
 }
 
 func main() {
