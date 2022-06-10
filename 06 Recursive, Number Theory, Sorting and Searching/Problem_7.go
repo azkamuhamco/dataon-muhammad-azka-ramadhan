@@ -1,3 +1,4 @@
+// MASIH SALAH
 package main
 import "fmt"
 
@@ -6,7 +7,7 @@ func playingDomino(cards [][]int, deck []int) interface{} {
 
     for i:=0; i<len(cards); i++ {
 		for j:=0; j<2; j++ {
-			if deck[0] == cards[i][j] || deck[1] == cards[i][j] {
+			if deck[0] == cards[i][j] || deck[1] == cards[i][j]{
 				hasil = append(hasil, cards[i]...)
 			}
 		}
@@ -15,7 +16,7 @@ func playingDomino(cards [][]int, deck []int) interface{} {
 	if len(hasil) == 0 {
 		return "tutup kartu"
 	}
-	return hasil[0:2]
+	return hasil
 }
 
 func main() {
