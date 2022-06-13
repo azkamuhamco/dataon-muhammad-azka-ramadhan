@@ -17,9 +17,17 @@ SELECT * FROM transaction_details td
     INNER JOIN users u ON t.user_id = u.id;
 
 -- 6 Buat function setelah data transaksi dihapus maka transaction detail terhapus juga dengan trx id yang dimaksud
-
+DELETE FROM transaction_details WHERE transaction_id IN (SELECT id FROM transactions WHERE id=@Id);
+DELETE FROM transactions WHERE id=@Id;
 
 -- 7 Buat function setelah data transaksi detail dihapus maka data total_qty terupdate berdasarkan qty data transaction id yg dihapus
-
+DELETE FROM transaction_details WHERE transaction_id IN
+    (SELECT id FROM transactions WHERE total_qty IN 
+        (SELECT total_qty FROM transactions WHERE updated_at IN 
+            (SELECT MAX(updated_at) FROM transactions)
+        )
+    );
 
 -- 8 Tampilkan data products yang tidak pernah ada di tabel transaction_details dg sub-query
+SELECT * FROM products WHERE id NOT IN 
+    ();
