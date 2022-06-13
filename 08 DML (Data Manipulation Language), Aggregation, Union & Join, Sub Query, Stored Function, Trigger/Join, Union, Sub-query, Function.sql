@@ -29,5 +29,4 @@ DELETE FROM transaction_details WHERE transaction_id IN
     );
 
 -- 8 Tampilkan data products yang tidak pernah ada di tabel transaction_details dg sub-query
-SELECT * FROM products WHERE id NOT IN 
-    ();
+SELECT * FROM products WHERE id NOT IN (SELECT product_id FROM transaction_details);
