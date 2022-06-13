@@ -47,19 +47,19 @@ INSERT IGNORE INTO users VALUES (4, 'Rahma', 1, '1989-10-09', 'F', NOW(), NOW())
 INSERT IGNORE INTO users VALUES (5, 'Azka', 1, '1991-01-07', 'M', NOW(), NOW());
 
 -- Insert 3 transaksi masing2 user
-INSERT IGNORE INTO transactions VALUES (1, 5, 2, 1, 3, 100000, NOW(), NOW());
-INSERT IGNORE INTO transactions VALUES (2, 4, 3, 1, 3, 100000, NOW(), NOW());
-INSERT IGNORE INTO transactions VALUES (3, 1, 1, 1, 3, 100000, NOW(), NOW());
+INSERT IGNORE INTO transactions VALUES (1, 5, 2, 1, 3, 145000, NOW(), NOW());
+INSERT IGNORE INTO transactions VALUES (2, 4, 3, 1, 3, 185000, NOW(), NOW());
+INSERT IGNORE INTO transactions VALUES (3, 1, 1, 1, 3, 300000, NOW(), NOW());
 
 -- Insert 3 product di masing2 transaksi
-INSERT IGNORE INTO transaction_details VALUES (1, 1, 'Terbayar', 1, 100000, NOW(), NOW());
-INSERT IGNORE INTO transaction_details VALUES (1, 4, 'Terbayar', 1, 100000, NOW(), NOW());
-INSERT IGNORE INTO transaction_details VALUES (1, 6, 'Terbayar', 1, 100000, NOW(), NOW());
+INSERT IGNORE INTO transaction_details VALUES (1, 1, 'Terbayar', 1, 50000, NOW(), NOW());
+INSERT IGNORE INTO transaction_details VALUES (1, 4, 'Terbayar', 1, 75000, NOW(), NOW());
+INSERT IGNORE INTO transaction_details VALUES (1, 6, 'Terbayar', 1, 20000, NOW(), NOW());
 
 INSERT IGNORE INTO transaction_details VALUES (2, 2, 'Terbayar', 1, 100000, NOW(), NOW());
-INSERT IGNORE INTO transaction_details VALUES (2, 3, 'Terbayar', 1, 100000, NOW(), NOW());
-INSERT IGNORE INTO transaction_details VALUES (2, 7, 'Terbayar', 1, 100000, NOW(), NOW());
+INSERT IGNORE INTO transaction_details VALUES (2, 3, 'Terbayar', 1,  40000, NOW(), NOW());
+INSERT IGNORE INTO transaction_details VALUES (2, 7, 'Terbayar', 1,  45000, NOW(), NOW());
 
 INSERT IGNORE INTO transaction_details VALUES (3, 2, 'Terbayar', 1, 100000, NOW(), NOW());
-INSERT IGNORE INTO transaction_details VALUES (3, 5, 'Terbayar', 1, 100000, NOW(), NOW());
-INSERT IGNORE INTO transaction_details VALUES (3, 8, 'Terbayar', 1, 100000, NOW(), NOW());
+INSERT IGNORE INTO transaction_details VALUES (3, 5, 'Terbayar', 1, 120000, NOW(), NOW());
+INSERT IGNORE INTO transaction_details VALUES (3, 8, 'Terbayar', 1,  80000, NOW(), NOW());
