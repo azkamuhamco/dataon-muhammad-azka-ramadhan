@@ -13,6 +13,7 @@ SELECT * FROM products p INNER JOIN product_types pt ON p.product_type_id = pt.i
 -- 5 Tampilkan semua field table transaction, field name table product dan field name table user
 SELECT * FROM transaction_details td 
     INNER JOIN transactions t ON td.transaction_id = t.id
+    INNER JOIN products p ON td.product_id = p.id
     INNER JOIN users u ON t.user_id = u.id;
 
 -- 6 Buat function setelah data transaksi dihapus maka transaction detail terhapus juga dengan trx id yang dimaksud
