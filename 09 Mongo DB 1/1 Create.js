@@ -47,3 +47,17 @@ db.transactions.insert([
     {id: 1, user_id: 1, payment_methods_id: 1, status: 1, total_qty: 3, totalprice: 145000}
 ]);
 
+db.transaction_details.insert([
+    {transaction_id: 1, product_id: 1, status: 'Terbayar', qty: 1, price:  50000},
+    {transaction_id: 1, product_id: 4, status: 'Terbayar', qty: 1, price:  75000},
+    {transaction_id: 1, product_id: 6, status: 'Terbayar', qty: 1, price:  20000},
+
+    {transaction_id: 2, product_id: 2, status: 'Terbayar', qty: 1, price: 100000},
+    {transaction_id: 2, product_id: 3, status: 'Terbayar', qty: 1, price:  40000},
+    {transaction_id: 2, product_id: 7, status: 'Terbayar', qty: 1, price:  45000},
+
+    {transaction_id: 3, product_id: 2, status: 'Terbayar', qty: 1, price: 100000},
+    {transaction_id: 3, product_id: 5, status: 'Terbayar', qty: 1, price: 120000},
+    {transaction_id: 3, product_id: 8, status: 'Terbayar', qty: 1, price:  80000}
+]);
+
