@@ -1,46 +1,50 @@
+DROP DATABASE IF EXISTS alta_online_shop;
+
 CREATE DATABASE alta_online_shop;
 
-CREATE TABLE users (
-    id INT(11) PRIMARY KEY,
+USE alta_online_shop;
+
+CREATE TABLE IF NOT EXISTS users (
+    id INT PRIMARY KEY,
     dob DATE NOT NULL,
     gender CHAR(1) NOT NULL,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL
 );
 
-CREATE TABLE product_types (
-    id INT(11) PRIMARY KEY, 
+CREATE TABLE IF NOT EXISTS product_types (
+    id INT PRIMARY KEY, 
     name VARCHAR(255) NOT NULL,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL    
 );
 
-CREATE TABLE operators (
-    id INT(11), 
+CREATE TABLE IF NOT EXISTS operators (
+    id INT PRIMARY KEY, 
     name VARCHAR(255) NOT NULL,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL    
 );
 
-CREATE TABLE product_descriptions (
-    id INT(11) PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS product_descriptions (
+    id INT PRIMARY KEY,
     description TEXT,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL    
 );
 
-CREATE TABLE payment_methods (
-    id INT(11) PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS payment_methods (
+    id INT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     status SMALLINT NOT NULL,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL      
 );
 
-CREATE TABLE products (
-    id INT(11) PRIMARY KEY,
-    product_type_id INT(11),
-    operator_id INT(11),
+CREATE TABLE IF NOT EXISTS products (
+    id INT PRIMARY KEY,
+    product_type_id INT,
+    operator_id INT,
     code VARCHAR(50) NOT NULL,
     name VARCHAR(255) NOT NULL,
     status SMALLINT NOT NULL,
@@ -50,12 +54,12 @@ CREATE TABLE products (
     FOREIGN KEY (operator_id) REFERENCES operators(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE transactions (
-    id INT(11) PRIMARY KEY,
-    user_id INT(11),
-    payment_method_id INT(11),
+CREATE TABLE IF NOT EXISTS transactions (
+    id INT PRIMARY KEY,
+    user_id INT,
+    payment_method_id INT,
     status VARCHAR(10) NOT NULL,
-    total_qty INT(11) NOT NULL,
+    total_qty INT NOT NULL,
     total_price NUMERIC(25,2) NOT NULL,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL,
@@ -63,20 +67,21 @@ CREATE TABLE transactions (
     FOREIGN KEY (payment_method_id) REFERENCES payment_methods(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE transaction_details (
-    transaction_id INT(11) PRIMARY KEY,
-    product_id INT(11) PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS transaction_details (
+    transaction_id INT,
+    product_id INT,
     status VARCHAR(10) NOT NULL,
-    total_qty INT(11) NOT NULL,
+    total_qty INT NOT NULL,
     total_price NUMERIC(25,2) NOT NULL,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL,
+    PRIMARY KEY (transaction_id, product_id),
     FOREIGN KEY (transaction_id) REFERENCES transactions(id) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE kurir (
-    id INT(11),
+CREATE TABLE IF NOT EXISTS kurir (
+    id INT,
     name VARCHAR(255) NOT NULL,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL
