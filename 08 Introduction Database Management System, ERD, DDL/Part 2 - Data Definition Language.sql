@@ -4,6 +4,8 @@ USE alta_online_shop;
 
 CREATE TABLE IF NOT EXISTS users (
     id INT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    status SMALLINT NOT NULL,
     dob DATE NOT NULL,
     gender CHAR(1) NOT NULL,
     created_at TIMESTAMP NOT NULL,
