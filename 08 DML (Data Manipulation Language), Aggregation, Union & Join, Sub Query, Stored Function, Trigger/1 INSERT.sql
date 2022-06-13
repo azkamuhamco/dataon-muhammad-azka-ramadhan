@@ -47,7 +47,7 @@ INSERT IGNORE INTO users VALUES (4, 'Rahma', 1, '1989-10-09', 'F', NOW(), NOW())
 INSERT IGNORE INTO users VALUES (5, 'Azka', 1, '1991-01-07', 'M', NOW(), NOW());
 
 -- Insert 3 transaksi masing2 user
-INSERT IGNORE INTO transactions VALUES (1, 5, 2, 1, 3, 145000, NOW(), NOW());
+INSERT IGNORE INTO transactions VALUES (1, 2, 2, 1, 3, 145000, NOW(), NOW());
 INSERT IGNORE INTO transactions VALUES (2, 4, 3, 1, 3, 185000, NOW(), NOW());
 INSERT IGNORE INTO transactions VALUES (3, 1, 1, 1, 3, 300000, NOW(), NOW());
 
