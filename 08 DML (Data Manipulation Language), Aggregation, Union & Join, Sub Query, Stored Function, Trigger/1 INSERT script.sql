@@ -11,18 +11,18 @@ INSERT IGNORE INTO product_types VALUES (2, 'Paket Data', NOW(), NOW());
 INSERT IGNORE INTO product_types VALUES (3, 'Paket Komunikasi', NOW(), NOW());
 
 -- Insert 2 product dg product_types.id = 1 && operators.id = 3
-INSERT IGNORE INTO products VALUES (1, 1, 3, 'XL-PULSA-50', 'XL Pulsa 50000', 1, NOW(), NOW());
-INSERT IGNORE INTO products VALUES (2, 1, 3, 'XL-PULSA-100', 'XL Pulsa 100000', 1, NOW(), NOW());
+INSERT IGNORE INTO products VALUES (1, 1, 3, 'XL-PULSA-50', 50000, 'XL Pulsa 50000', 1, NOW(), NOW());
+INSERT IGNORE INTO products VALUES (2, 1, 3, 'XL-PULSA-100', 100000, 'XL Pulsa 100000', 1, NOW(), NOW());
 
 -- Insert 3 product dg product_types.id = 2 && operators.id = 1
-INSERT IGNORE INTO products VALUES (3, 2, 1, 'TSEL-DATA-5GB', 'Telkomsel Data Reguler 5 GB', 1, NOW(), NOW());
-INSERT IGNORE INTO products VALUES (4, 2, 1, 'TSEL-DATA-10GB', 'Telkomsel Data Reguler 10 GB', 1, NOW(), NOW());
-INSERT IGNORE INTO products VALUES (5, 2, 1, 'TSEL-DATA-15GB', 'Telkomsel Data Reguler 15 GB', 1, NOW(), NOW());
+INSERT IGNORE INTO products VALUES (3, 2, 1, 'TSEL-DATA-5GB', 40000, 'Telkomsel Data Reguler 5 GB', 1, NOW(), NOW());
+INSERT IGNORE INTO products VALUES (4, 2, 1, 'TSEL-DATA-10GB', 75000, 'Telkomsel Data Reguler 10 GB', 1, NOW(), NOW());
+INSERT IGNORE INTO products VALUES (5, 2, 1, 'TSEL-DATA-15GB', 120000, 'Telkomsel Data Reguler 15 GB', 1, NOW(), NOW());
 
 -- Insert 3 product dg product_types.id = 3 && operators.id = 4
-INSERT IGNORE INTO products VALUES (6, 3, 4, 'SMART-KOM-TEL20', 'Smartfren Bebas Bicara 20 Menit', 1, NOW(), NOW());
-INSERT IGNORE INTO products VALUES (7, 3, 4, 'SMART-KOM-TEL50', 'Smartfren Bebas Bicara 50 Menit', 1, NOW(), NOW());
-INSERT IGNORE INTO products VALUES (8, 3, 4, 'SMART-KOM-TEL90', 'Smartfren Bebas Bicara 90 Menit', 1, NOW(), NOW());
+INSERT IGNORE INTO products VALUES (6, 3, 4, 'SMART-KOM-TEL20', 20000, 'Smartfren Bebas Bicara 20 Menit', 1, NOW(), NOW());
+INSERT IGNORE INTO products VALUES (7, 3, 4, 'SMART-KOM-TEL50', 45000, 'Smartfren Bebas Bicara 50 Menit', 1, NOW(), NOW());
+INSERT IGNORE INTO products VALUES (8, 3, 4, 'SMART-KOM-TEL90', 80000, 'Smartfren Bebas Bicara 90 Menit', 1, NOW(), NOW());
 
 -- Insert product description setiap product
 INSERT IGNORE INTO product_descriptions VALUES (1, 'XL Pulsa 50000 masa aktif 60 hari', NOW(), NOW());
@@ -40,13 +40,26 @@ INSERT IGNORE INTO payment_methods VALUES (2, 'Debit', 1, NOW(), NOW());
 INSERT IGNORE INTO payment_methods VALUES (3, 'E-pay', 1, NOW(), NOW());
 
 -- Insert 5 user
-INSERT IGNORE INTO users VALUES (1, 'Karim', 1, '1994-07-05', 'L', NOW(), NOW());
-INSERT IGNORE INTO users VALUES (2, 'Karina', 1, '1992-07-15', 'P', NOW(), NOW());
-INSERT IGNORE INTO users VALUES (3, 'Yoda', 1, '2020-04-04', 'L', NOW(), NOW());
-INSERT IGNORE INTO users VALUES (4, 'Rahma', 1, '1989-10-09', 'P', NOW(), NOW());
-INSERT IGNORE INTO users VALUES (5, 'Azka', 1, '1991-01-07', 'L', NOW(), NOW());
+INSERT IGNORE INTO users VALUES (1, 'Karim', 1, '1994-07-05', 'M', NOW(), NOW());
+INSERT IGNORE INTO users VALUES (2, 'Karina', 1, '1992-07-15', 'F', NOW(), NOW());
+INSERT IGNORE INTO users VALUES (3, 'Yoda', 1, '2020-04-04', 'M', NOW(), NOW());
+INSERT IGNORE INTO users VALUES (4, 'Rahma', 1, '1989-10-09', 'F', NOW(), NOW());
+INSERT IGNORE INTO users VALUES (5, 'Azka', 1, '1991-01-07', 'M', NOW(), NOW());
 
 -- Insert 3 transaksi masing2 user
-
+INSERT IGNORE INTO transactions VALUES (1, 5, 2, 1, 3, 100000, NOW(), NOW());
+INSERT IGNORE INTO transactions VALUES (2, 4, 3, 1, 3, 100000, NOW(), NOW());
+INSERT IGNORE INTO transactions VALUES (3, 1, 1, 1, 3, 100000, NOW(), NOW());
 
 -- Insert 3 product di masing2 transaksi
+INSERT IGNORE INTO transaction_details VALUES (1, 1, 'Terbayar', 1, 100000, NOW(), NOW());
+INSERT IGNORE INTO transaction_details VALUES (1, 4, 'Terbayar', 1, 100000, NOW(), NOW());
+INSERT IGNORE INTO transaction_details VALUES (1, 6, 'Terbayar', 1, 100000, NOW(), NOW());
+
+INSERT IGNORE INTO transaction_details VALUES (2, 2, 'Terbayar', 1, 100000, NOW(), NOW());
+INSERT IGNORE INTO transaction_details VALUES (2, 3, 'Terbayar', 1, 100000, NOW(), NOW());
+INSERT IGNORE INTO transaction_details VALUES (2, 7, 'Terbayar', 1, 100000, NOW(), NOW());
+
+INSERT IGNORE INTO transaction_details VALUES (3, 2, 'Terbayar', 1, 100000, NOW(), NOW());
+INSERT IGNORE INTO transaction_details VALUES (3, 5, 'Terbayar', 1, 100000, NOW(), NOW());
+INSERT IGNORE INTO transaction_details VALUES (3, 8, 'Terbayar', 1, 100000, NOW(), NOW());
