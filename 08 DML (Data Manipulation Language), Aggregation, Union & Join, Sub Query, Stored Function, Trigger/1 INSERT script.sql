@@ -40,11 +40,11 @@ INSERT IGNORE INTO payment_methods VALUES (2, 'Debit', 1, NOW(), NOW());
 INSERT IGNORE INTO payment_methods VALUES (3, 'E-pay', 1, NOW(), NOW());
 
 -- Insert 5 user
-INSERT IGNORE INTO users VALUES (1, 1, '1991-05-05', 'L', NOW(), NOW());
-INSERT IGNORE INTO users VALUES (1, 1, '1992-11-15', 'P', NOW(), NOW());
-INSERT IGNORE INTO users VALUES (1, 1, '1993-06-05', 'L', NOW(), NOW());
-INSERT IGNORE INTO users VALUES (1, 1, '1994-12-03', 'P', NOW(), NOW());
-INSERT IGNORE INTO users VALUES (1, 1, '1995-07-05', 'L', NOW(), NOW());
+INSERT IGNORE INTO users VALUES (1, 'Karim', 1, '1994-07-05', 'L', NOW(), NOW());
+INSERT IGNORE INTO users VALUES (2, 'Karina', 1, '1992-07-15', 'P', NOW(), NOW());
+INSERT IGNORE INTO users VALUES (3, 'Yoda', 1, '2020-04-04', 'L', NOW(), NOW());
+INSERT IGNORE INTO users VALUES (4, 'Rahma', 1, '1989-10-09', 'P', NOW(), NOW());
+INSERT IGNORE INTO users VALUES (5, 'Azka', 1, '1991-01-07', 'L', NOW(), NOW());
 
 -- Insert 3 transaksi masing2 user
 
