@@ -26,19 +26,12 @@ CREATE TABLE IF NOT EXISTS operators (
     updated_at TIMESTAMP NOT NULL    
 );
 
-CREATE TABLE IF NOT EXISTS product_descriptions (
-    id INT PRIMARY KEY,
-    description TEXT,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP NOT NULL    
-);
-
 CREATE TABLE IF NOT EXISTS payment_methods (
     id INT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     status SMALLINT NOT NULL,
     created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP NOT NULL      
+    updated_at TIMESTAMP NOT NULL 
 );
 
 CREATE TABLE IF NOT EXISTS products (
@@ -53,6 +46,14 @@ CREATE TABLE IF NOT EXISTS products (
     updated_at TIMESTAMP NOT NULL,
     FOREIGN KEY (product_type_id) REFERENCES product_types(id) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (operator_id) REFERENCES operators(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS product_descriptions (
+    id INT PRIMARY KEY,
+    description TEXT,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP NOT NULL, 
+    FOREIGN KEY (id) REFERENCES products(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS transactions (
