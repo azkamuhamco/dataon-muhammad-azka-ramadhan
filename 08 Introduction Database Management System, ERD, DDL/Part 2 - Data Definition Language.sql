@@ -1,6 +1,4 @@
-DROP DATABASE IF EXISTS alta_online_shop;
-
-CREATE DATABASE alta_online_shop;
+CREATE DATABASE IF NOT EXISTS alta_online_shop;
 
 USE alta_online_shop;
 
