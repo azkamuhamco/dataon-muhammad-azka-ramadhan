@@ -36,6 +36,24 @@ db.books.aggregate([{
 }]);
 
 // 5. Tampilkan semua field books, authors, publishers terkait
+db.books.aggregate([
+    {
+        $lookup: {
+            from: "authors",
+            localField: "authorID",
+            foreignField: "_id",
+            as: "author"
+        }
+    }, { $unwind: "$author"},
+    {
+        $lookup: {
+            from: "publishers",
+            localField: "publisherID",
+            foreignField: "_id",
+            as: "publisher"
+        }
+    }, { $unwind: "$publisher"}
+]);
 
 // 6. Tampilkan summary data authors, books, dan publishers sesuai Output
 
