@@ -5,17 +5,14 @@ db.books.find( { authorID: { $in: [1,2] } } );
 db.books.find( { authorID: 1 }, { title: 1, price: 1 } );
 
 // 3. Tampilkan total jumlah halaman buku author id 2
-// db.books.aggregate(
-//     { $project: { stats: { $objectToArray: "$stats" } } },
-//     { $unwind: '$stats' },
-//     { $addFields: { 'type': {$type: '$stats.v'} } },
-//     { $match: { authorID: 2 } },
-//     { $group: {
-//         _id: "$authorID",
-//         totalPages: { $sum: "$stats.v" }
-//       }
-//   }
-// );
+db.books.aggregate([
+    { $match: { authorID: 2 } },
+    { $unwind: '$stats' },
+    { $group: {
+        _id: "$authorID",
+        totalPages: { $sum: "$stats.page" }
+    }}
+]);
 
 // 4. Tampilkan semua field books dan authors terkait
 
