@@ -15,6 +15,25 @@ db.books.aggregate([
 ]);
 
 // 4. Tampilkan semua field books dan authors terkait
+// Output 1
+db.authors.aggregate([{
+    $lookup: {
+      from: "books",
+      localField: "_id",
+      foreignField: "authorID",
+      as: "books"
+    }
+}]);
+
+// Output 2
+db.books.aggregate([{
+    $lookup: {
+      from: "authors",
+      localField: "authorID",
+      foreignField: "_id",
+      as: "authors"
+    }
+}]);
 
 // 5. Tampilkan semua field books, authors, publishers terkait
 
@@ -28,3 +47,6 @@ db.books.aggregate([
 
 // 8. Tampilkan semua nama buku, harga, nama author dan nama publisher, 
 //    urutkan dari harga termahal ke harga termurah
+
+// 9. Tampilkan data nama buku harga dan publisher, kemudian tampilkan
+//    hanya data ke 3 dan ke 4
