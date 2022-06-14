@@ -57,10 +57,10 @@ db.books.aggregate([
 
 // 6. Tampilkan summary data authors, books, dan publishers sesuai Output
 db.authors.aggregate([
-    { $unwind: '$_id' },
-    { $group: {
-        _id: { $concat: ["$firstName", " ", "$lastName"] }
-    }}
+    { $group: 
+        { _id: { $concat: ["$firstName", " ", "$lastName"] } } 
+    },
+    { $sort: {count:1} } 
 ]);
 
 // 7. digital_outlet ingin memberikan diskon untuk setiap buku, diskon
