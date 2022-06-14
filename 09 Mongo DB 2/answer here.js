@@ -14,7 +14,7 @@ db.books.find( { authorID: 1 }, { title: 1, price: 1 } );
 //         _id: "$authorID",
 //         totalPages: { $sum: "$stats.v" }
 //       }
-//   }cdc
+//   }
 // );
 
 // 4. Tampilkan semua field books dan authors terkait
