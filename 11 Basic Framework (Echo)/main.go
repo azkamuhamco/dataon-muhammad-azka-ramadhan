@@ -2,7 +2,7 @@ package main
 
 import (
 	"net/http"
-	"strconv"
+	// "strconv"
 	"github.com/labstack/echo"
 )
 
@@ -25,20 +25,20 @@ func GetUsersController(c echo.Context) error {
 	})
 }
 
-// get user by id
-func GetUserController(c echo.Context) error {
-	// solution here
-}
+// // get user by id
+// func GetUserController(c echo.Context) error {
+// 	// solution here
+// }
 
-// delete user by id
-func DeleteUserController(c echo.Context) error {
-	// solution here
-}
+// // delete user by id
+// func DeleteUserController(c echo.Context) error {
+// 	// solution here
+// }
 
-// update user by id
-func UpdateUserController(c echo.Context) error {
-	// solution here
-}
+// // update user by id
+// func UpdateUserController(c echo.Context) error {
+// 	// solution here
+// }
 
 // create new user
 func CreateUserController(c echo.Context) error {
