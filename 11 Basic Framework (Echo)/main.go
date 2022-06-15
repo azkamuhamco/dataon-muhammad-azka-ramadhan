@@ -7,10 +7,10 @@ import (
 )
 
 type User struct {
-	Id			int		`json:"id" form:"id"`
-	Name		string	`json:"name" form:"name"`
-	Email		string	`json:"email" form:"email"`
-	Password	string	`json:"password" form:"password"`
+	Id       int    `json:"id" form:"id"`
+	Name     string `json:"name" form:"name"`
+	Email    string `json:"email" form:"email"`
+	Password string `json:"password" form:"password"`
 }
 
 var users []User
@@ -20,8 +20,8 @@ var users []User
 // get all users
 func GetUsersController(c echo.Context) error {
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"messages":	"success get all users",
-		"users":	users,
+		"messages": "success get all users",
+		"users":    users,
 	})
 }
 
@@ -43,7 +43,7 @@ func GetUsersController(c echo.Context) error {
 // create new user
 func CreateUserController(c echo.Context) error {
 	// binding data
-	user := User()
+	user := User{}
 	c.Bind(&user)
 
 	if len(users) == 0 {
@@ -53,9 +53,9 @@ func CreateUserController(c echo.Context) error {
 		user.Id = newId
 	}
 	users = append(users, user)
-	return c.JSON(http.StatusOK, map[string]interface{} {
-		"messages":	"success get all users",
-		"user":	user,
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"messages": "success get all users",
+		"user":     user,
 	})
 }
 
