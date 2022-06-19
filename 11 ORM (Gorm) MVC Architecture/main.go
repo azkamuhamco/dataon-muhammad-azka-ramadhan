@@ -123,14 +123,9 @@ func CreateUserController(c echo.Context) error {
 // delete user by id
 func DeleteUserController(c echo.Context) error {
 	ID, _ := strconv.Atoi(c.Param("id"))
+	guna := map[int]*User{}
 
-	removeIndex := (func(s []User, index int) []User {
-		ret := make([]User, 0)
-		ret = append(ret, s[:index]...)
-		return append(ret, s[index+1:]...)
-	})
-
-	users = removeIndex(users, ID)
+	delete(guna, ID)
 
 	if err := DB.Save(&users).Error; err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
