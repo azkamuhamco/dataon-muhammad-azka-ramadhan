@@ -107,11 +107,14 @@ func CreateUserController(c echo.Context) error {
 	user := User{}
 	c.Bind(&user)
 
-	if len(users) == 0 {
-		user.ID = 1
+	queryLastId := DB.Last(&user)
+	lastId := queryLastId.RowsAffected
+
+	if lastId >= 0 {
+		newId := lastId + 1
+		user.ID = uint(newId)
 	} else {
-		newId := users[len(users)-1].ID + 1
-		user.ID = newId
+		user.ID = 0
 	}
 
 	name := c.FormValue("name")
