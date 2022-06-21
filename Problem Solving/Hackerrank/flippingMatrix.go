@@ -29,13 +29,13 @@ func flippingMatrix(matrix [][]int32) int32 {
 			return b
 		}
 		return a
-	}
+	};
 
 	for i = 0; i < n/2; i++ {
 		for j = 0; j < n/2; j++ {
-			iKiri := n - 1 - i
-			iKanan := nZ - 1 - j
-			s += max(max(matrix[i][j], matrix[i][iKanan]), max(matrix[iKiri][j], matrix[iKiri][iKanan]))
+			x := n - 1 - i
+			y := nZ - 1 - j
+			s += max(max(matrix[i][j], matrix[i][y]), max(matrix[x][j], matrix[x][y]))
 		}
 	}
 
