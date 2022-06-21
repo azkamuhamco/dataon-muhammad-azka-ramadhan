@@ -104,35 +104,42 @@ func GetUserController(c echo.Context) error {
 
 // create new user
 func CreateUserController(c echo.Context) error {
-	user := User{}
-	c.Bind(&user)
-
-	queryLastId := DB.Last(&user)
-	lastId := queryLastId.RowsAffected
-
-	if lastId >= 0 {
-		newId := lastId + 1
-		user.ID = uint(newId)
-	} else {
-		user.ID = 0
+	usr := new(User)
+	if err := c.Bind(usr); err != nil {
+		return err
 	}
 
-	name := c.FormValue("name")
-	email := c.FormValue("email")
-	password := c.FormValue("password")
-
-	user.Name = name
-	user.Email = email
-	user.Password = password
-
-	users = append(users, user)
-
-	if err := DB.Save(&user).Error; err != nil {
-		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
+	DBS, er := sql.Open("mysql", ConnString())
+	if er != nil {
+		panic(er)
 	}
+	defer DBS.Close()
+
+	sql := "INSERT INTO users(name, email, password, created_at, updated_at) VALUES(?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)"
+	stmt, err := DBS.Prepare(sql)
+
+	if err != nil {
+		fmt.Print(err.Error())
+	}
+	defer stmt.Close()
+
+	usr.Name = c.FormValue("name")
+	usr.Email = c.FormValue("email")
+	usr.Password = c.FormValue("password")
+
+	result, err2 := stmt.Exec(usr.Name, usr.Email, usr.Password)
+
+	// Exit if we get an error
+	if err2 != nil {
+		panic(err2)
+	}
+	fmt.Println(result.LastInsertId())
+
+	users[len(users)-1].ID = uint(len(users)) + 1
+
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"messages": "success create a new user",
-		"users":    users,
+		"messages": "success get an user",
+		"users":    users[len(users)-1],
 	})
 }
 
