@@ -1,7 +1,6 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
 	"net/http"
 	"strconv"
@@ -109,60 +108,36 @@ func CreateUserController(c echo.Context) error {
 		return err
 	}
 
-	DBS, er := sql.Open("mysql", ConnString())
-	if er != nil {
-		panic(er)
-	}
-	defer DBS.Close()
+	usr.Name = c.FormValue("name")
+	usr.Email = c.FormValue("email")
+	usr.Password = c.FormValue("password")
 
-	sql := "INSERT INTO users(name, email, password, created_at, updated_at) VALUES(?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)"
-	stmt, err := DBS.Prepare(sql)
+	sql := `INSERT INTO users(name, email, password, created_at, updated_at)
+			VALUES("` + usr.Name + `", "` + usr.Email + `", "` + usr.Password + `",
+				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`
 
-	if err != nil {
-		fmt.Print(err.Error())
-	}
-	defer stmt.Close()
+	DB.Exec(sql)
 
 	usr.Name = c.FormValue("name")
 	usr.Email = c.FormValue("email")
 	usr.Password = c.FormValue("password")
 
-	result, err2 := stmt.Exec(usr.Name, usr.Email, usr.Password)
-
-	// Exit if we get an error
-	if err2 != nil {
-		panic(err2)
-	}
-	fmt.Println(result.LastInsertId())
-
-	users[len(users)-1].ID = uint(len(users)) + 1
+	// users[len(users)-1].ID = uint(len(users)) + 1
 
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"messages": "success get an user",
-		"users":    users[len(users)-1],
+		"messages": "success create an user",
+		// "users":    users[len(users)],
 	})
 }
 
 // delete user by id
 func DeleteUserController(c echo.Context) error {
-	DBS, er := sql.Open("mysql", ConnString())
-	if er != nil {
-		panic(er)
-	}
-	defer DBS.Close()
-
 	requested_id := c.Param("ID")
-	sql := "DELETE FROM users WHERE ID = ?"
-	stmt, err := DBS.Prepare(sql)
-	if err != nil {
-		fmt.Println(err)
-	}
+	DB.Exec("DELETE FROM users WHERE ID = " + requested_id)
 
-	_, err2 := stmt.Exec(requested_id)
-	if err2 != nil {
-		panic(err2)
+	if err := DB.Find(&users).Error; err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
-
 	return c.JSON(http.StatusOK, "success delete ID "+string(requested_id))
 }
 
