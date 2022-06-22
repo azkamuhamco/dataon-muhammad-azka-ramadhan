@@ -1,14 +1,19 @@
 package model
 
 import (
-	"github.com/jinzhu/gorm"
+	"time"
+
+	"gorm.io/gorm"
 )
 
 type User struct {
-	gorm.Model
-	Name     string `json:"name" form:"name"`
-	Email    string `json:"email" form:"email"`
-	Password string `json:"password" form:"password"`
+	ID        uint   `gorm:"primaryKey"`
+	Name      string `json:"name" form:"name"`
+	Email     string `json:"email" form:"email"`
+	Password  string `json:"password" form:"password"`
+	CreatedAt time.Time
+	UpdatedAt time.Time
+	DeletedAt gorm.DeletedAt `gorm:"index"`
 }
 
 type Config struct {
