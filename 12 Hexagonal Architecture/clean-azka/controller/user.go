@@ -6,13 +6,14 @@ import (
 	"net/http"
 	"strconv"
 
+	"clean-azka/config"
 	"clean-azka/model"
 
 	"github.com/labstack/echo/v4"
 )
 
 var users []model.User
-var debe = model.DB
+var debe = config.DB
 
 // get all users
 func GetUsersController(c echo.Context) error {

@@ -7,18 +7,18 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-var debe = model.DB
+var DB *gorm.DB
 var guna = model.User{}
 var connStr = model.ConnString()
 
 func InitDB() {
 	var err error
-	debe, err = gorm.Open("mysql", connStr)
+	DB, err = gorm.Open("mysql", connStr)
 	if err != nil {
 		panic(err)
 	}
 }
 
 func InitialMigration() {
-	debe.AutoMigrate(&guna)
+	DB.AutoMigrate(&guna)
 }

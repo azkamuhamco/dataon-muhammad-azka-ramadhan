@@ -6,8 +6,6 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-var DB *gorm.DB
-
 type User struct {
 	gorm.Model
 	Name     string `json:"name" form:"name"`
