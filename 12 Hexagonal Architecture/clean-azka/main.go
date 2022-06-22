@@ -1,16 +1,10 @@
 package main
 
 import (
-	"clean-azka/config"
 	"clean-azka/controller"
 
 	"github.com/labstack/echo/v4"
 )
-
-func init() {
-	config.InitDB()
-	config.InitialMigration()
-}
 
 func main() {
 	// create a new echo instance

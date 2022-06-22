@@ -9,15 +9,34 @@ import (
 	"clean-azka/config"
 	"clean-azka/model"
 
+	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo/v4"
 )
 
 var users []model.User
-var debe = config.DB
+var DB *gorm.DB
+var guna = model.User{}
+
+func init() {
+	InitDB()
+	InitialMigration()
+}
+
+func InitDB() {
+	var err error
+	DB, err = gorm.Open("mysql", config.ConnString())
+	if err != nil {
+		panic(err)
+	}
+}
+
+func InitialMigration() {
+	DB.AutoMigrate(&guna)
+}
 
 // get all users
 func GetUsersController(c echo.Context) error {
-	if err := debe.Find(&users).Error; err != nil {
+	if err := DB.Find(&users).Error; err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
 
@@ -36,7 +55,7 @@ func GetUserController(c echo.Context) error {
 	ID, _ := strconv.Atoi(c.Param("ID"))
 	ID -= 1
 
-	if err := debe.Find(&users).Error; err != nil {
+	if err := DB.Find(&users).Error; err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
 
@@ -55,7 +74,7 @@ func CreateUserController(c echo.Context) error {
 		return err
 	}
 
-	DBS, er := sql.Open("mysql", model.ConnString())
+	DBS, er := sql.Open("mysql", config.ConnString())
 	if er != nil {
 		panic(er)
 	}
@@ -91,7 +110,7 @@ func CreateUserController(c echo.Context) error {
 
 // delete user by id
 func DeleteUserController(c echo.Context) error {
-	DBS, er := sql.Open("mysql", model.ConnString())
+	DBS, er := sql.Open("mysql", config.ConnString())
 	if er != nil {
 		panic(er)
 	}
@@ -131,7 +150,7 @@ func UpdateUserController(c echo.Context) error {
 	user.Email = users[ID].Email
 	user.Password = users[ID].Password
 
-	if err := debe.Save(&user).Error; err != nil {
+	if err := DB.Save(&user).Error; err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
 	return c.JSON(http.StatusOK, map[string]interface{}{
