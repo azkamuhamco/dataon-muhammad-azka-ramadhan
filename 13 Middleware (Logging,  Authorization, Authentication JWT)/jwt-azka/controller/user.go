@@ -5,15 +5,15 @@ import (
 	"strconv"
 	"time"
 
-	"clean-azka/config"
-	"clean-azka/model"
+	"jwt-azka/config"
+	"jwt-azka/model"
 
 	"github.com/labstack/echo/v4"
 )
 
 var users []model.User
-var DB = config.DB
 var guna = model.User{}
+var DB = config.DB
 
 // get all users
 func GetUsersController(c echo.Context) error {

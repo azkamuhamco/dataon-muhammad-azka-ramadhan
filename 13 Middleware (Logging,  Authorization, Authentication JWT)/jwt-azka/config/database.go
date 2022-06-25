@@ -1,8 +1,8 @@
 package config
 
 import (
-	"clean-azka/model"
 	"fmt"
+	"jwt-azka/model"
 
 	_ "github.com/go-sql-driver/mysql"
 	"gorm.io/driver/mysql"
