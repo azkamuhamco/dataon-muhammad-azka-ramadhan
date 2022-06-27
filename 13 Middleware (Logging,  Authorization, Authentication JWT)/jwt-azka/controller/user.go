@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"jwt-azka/config"
+	"jwt-azka/middlewares"
 	"jwt-azka/model"
 
 	"github.com/labstack/echo/v4"
@@ -14,6 +15,37 @@ import (
 var users []model.User
 var guna = model.User{}
 var DB = config.DB
+
+func LoginUsers(user *model.User) (interface{}, error) {
+	var err error
+	if err = config.DB.Where("email = ? AND password = ?", user.Email, user.Password).First(user).Error; err != nil {
+		return nil, err
+	}
+
+	user.Token, err = middlewares.CreateToken(int(user.ID))
+	if err != nil {
+		return nil, err
+	}
+
+	if err := config.DB.Save(user).Error; err != nil {
+		return nil, err
+	}
+
+	return user, nil
+}
+
+func LoginUsersController(c echo.Context) error {
+	c.Bind(&guna)
+
+	users, e := LoginUsers(&guna)
+	if e != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, e.Error())
+	}
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"status": "success login",
+		"users":  users,
+	})
+}
 
 // get all users
 func GetUsersController(c echo.Context) error {
