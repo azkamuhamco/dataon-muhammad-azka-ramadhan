@@ -37,7 +37,10 @@ func LoginUsers(user *model.User) (interface{}, error) {
 func LoginUsersController(c echo.Context) error {
 	c.Bind(&guna)
 
+	guna.Email = c.FormValue("email")
+	guna.Password = c.FormValue("password")
 	users, e := LoginUsers(&guna)
+
 	if e != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, e.Error())
 	}

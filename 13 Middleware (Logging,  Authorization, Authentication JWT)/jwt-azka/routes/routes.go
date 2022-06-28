@@ -6,22 +6,19 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-	// echoMid "github.com/labstack/echo/v4/middleware"
 )
 
 func New() *echo.Echo {
 	// create a new echo instance
 	e := echo.New()
 
-	// // implement middleware with group routing
-	// eAuth := e.Group("")
-	// eAuth.Use(echoMid.BasicAuth(m.BasicAuthDB))
-
 	// JWT Group
-	r := e.Group("/jwt")
+	r := e.Group("")
 	r.Use(middleware.JWT([]byte(constants.SECRET_JWT)))
 
 	// route users
+	e.POST("/login", c.LoginUsersController)
+
 	r.GET("/users", c.GetUsersController)
 	r.GET("/users/:ID", c.GetUserController)
 	e.POST("/users", c.CreateUserController)
